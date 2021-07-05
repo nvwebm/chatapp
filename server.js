@@ -1,7 +1,8 @@
 const httpServer = require("http").createServer();
+const express = require('express');
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://infinite-savannah-52075.herokuapp.com",
   },
 });
 
@@ -23,3 +24,8 @@ io.use((socket, next) => {
 io.on("connection", handleNewConnection);
 
 httpServer.listen(4000);
+
+
+const app = express();
+app.use(express.static('public'));
+app.listen(80, () => console.log(`Server listening on port: 8000`));
